@@ -3,5 +3,84 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "followers": {
+      "projectType": "application",
+      "root": "projects/followers",
+      "sourceRoot": "projects/followers/src",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/followers/browser",
+            "index": "projects/followers/src/index.html",
+            "main": "projects/followers/src/main.ts",
+            "polyfills": "projects/followers/src/polyfills.ts",
+            "tsConfig": "projects/followers/tsconfig.app.json",
+            "assets": [
+              "projects/followers/src/favicon.ico",
+              "projects/followers/src/assets"
+            ],
+            "styles": [
+              "projects/followers/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/followers/src/environments/environment.ts",
+                  "with": "projects/followers/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "followers:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "followers:build:production"
+            },
+            "development": {
+              "browserTarget": "followers:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/followers/server",
+            "main": "projects/followers/src/main.server.ts",
+            "tsConfig": "projects/followers/tsconfig.server.json"
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "followers",
+  "cli": {
+    "analytics": false
   }
 }
